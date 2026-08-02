@@ -98,7 +98,7 @@ resource "aws_iam_role" "github_actions_role" {
         }
         StringLike = {
           # Replace YOUR_GITHUB_USERNAME/YOUR_REPO before applying
-          "token.actions.githubusercontent.com:sub" = "repo:YOUR_GITHUB_USERNAME/YOUR_REPO:*"
+          "token.actions.githubusercontent.com:sub" = "repo:https://github.com/srivijaykumarpadamata369/aws-cicd-blue-green-pipeline.git"
         }
       }
     }]
