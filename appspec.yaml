@@ -1,0 +1,15 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>  # placeholder, filled in by the CodeDeploy action at deploy time
+        LoadBalancerInfo:
+          ContainerName: "api-service"
+          ContainerPort: 8080
+        # PlatformVersion omitted intentionally - not needed for EC2 launch type
+
+# Optional enhancement (not included in this build): add BeforeAllowTraffic /
+# AfterAllowTraffic Lambda hooks here to run automated smoke tests against
+# the "green" test listener (port 8080) before CodeDeploy shifts real
+# traffic to it. Worth mentioning as a "next step" in interviews.

@@ -1,0 +1,34 @@
+{
+  "family": "cicd-demo-api-service",
+  "networkMode": "bridge",
+  "requiresCompatibilities": ["EC2"],
+  "cpu": "256",
+  "memory": "256",
+  "executionRoleArn": "REPLACE_WITH_ecs_task_execution_role_arn_FROM_TERRAFORM_OUTPUT",
+  "containerDefinitions": [
+    {
+      "name": "api-service",
+      "image": "PLACEHOLDER",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 0,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        { "name": "APP_VERSION", "value": "1.0.0" },
+        { "name": "PORT", "value": "8080" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/cicd-demo/api-service",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
